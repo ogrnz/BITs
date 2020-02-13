@@ -2,14 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import time
-import sys
 
 # strip contents of '\n'
 def cleanN(el, parent):
     if isinstance(el, str):
         parent.contents.remove(el)
     return
-
 
 t1 = time.time()
 
@@ -18,44 +16,40 @@ with open('urls.txt', 'r') as f:
     for line in f:
         urls.append(line.strip())
 
-urls = ['https://investmentpolicy.unctad.org/international-investment-agreements/treaties/bit/64/algeria---italy-bit-1991-']
+#urls = ['https://investmentpolicy.unctad.org/international-investment-agreements/treaties/bit/64/algeria---italy-bit-1991-']
 treaties = []
 
-sys.exit()
 for i, url in enumerate(urls):
     i += 1
 
-    print(f'Retrieving informations: {i}/{len(urls)}')
+    print(f'Retrieving information: {i}/{len(urls)}')
 
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'html.parser')
 
-    # Informations per treaty   
-    informations = {}
+    # Informations per treaty
+    information = {}
+    
+    information['name'] = soup.find('div', class_='page-title').h2.text.strip()
 
     # First elements
-    firstEls = soup.find_all('p', class_="form-control-static")
-    descs = ['name', 'Treaty type', 'Status', 'Date of signature', 'Date of entry into force', 'Treaty full text']
-    informations[descs[0]] = soup.find('div', class_='page-title').h2.text
+    firstEls = soup.find_all('div', class_="form-group")
 
-    for el, desc in zip(firstEls[0:4], descs[2:6]):
-        informations[desc] = el.text.strip()
-
-    if firstEls[4].a is None:
-        informations['Treaty full text'] = 'https://investmentpolicy.unctad.org' + firstEls[3].a['href']
-    else:
-        informations['Treaty full text'] = 'https://investmentpolicy.unctad.org' + firstEls[4].a['href']
+    for el in firstEls:
+        k = el.label.text.strip()
+        v = el.next_element.next_element.next_element.next_element.next_element.text.strip()
+        information[k] = v
 
     # Informations per criteria
-    informations['criteria'] = {}
+    information['criteria'] = {}
 
     # Get panel headings "div.panel-heading", create dict for each section
     headings = soup.find_all('div', class_='panel-heading')
 
     for heading in headings:
         # Create criteria dict
-        informations['criteria'][heading.text.strip()] = {}
-        BASE = informations['criteria'][heading.text.strip()]
+        information['criteria'][heading.text.strip()] = {}
+        BASE = information['criteria'][heading.text.strip()]
 
         # Get next sibling of each panel heading, those are sections 
         section = heading.next_sibling.next_sibling
@@ -117,12 +111,12 @@ for i, url in enumerate(urls):
                                 if len(nextElement.contents[0]['class']) == 2:
                                     lastCritLvl2 = None
     # Append to treaties dict                                
-    treaties.append(informations)
+    treaties.append(information)
     time.sleep(0.5)
 
 elapsed = time.time() - t1
 
-print('Finished retrieving informations in', elapsed, 's')
+print('Finished retrieving information in', elapsed, 's')
 print('Writing to data.json')
 
 with open('data.json', 'w') as outfile:

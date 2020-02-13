@@ -1,3 +1,5 @@
+# BITs
+
 Script to scrape content of mapped BITs (Bilateral Investment Treaties):
 https://investmentpolicy.unctad.org/international-investment-agreements/iia-mapping
 
