@@ -2,3 +2,4 @@ venv/
 .vscode/
 scraper/script2.py
 helper/rows.html
+helper/num1.py
