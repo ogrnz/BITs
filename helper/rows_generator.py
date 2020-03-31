@@ -4,7 +4,7 @@ base = 'https://investmentpolicy.unctad.org'
 
 def format_rows(rows):
     table = ''
-    for i, row in enumerate(rows[1:], start=1):
+    for i, row in enumerate(rows, start=1):
         table += f"""<tr>
         <td class="id">{ i }</td>
         <td class="url"><a href="{ base + row[0] }">url</a></td>
