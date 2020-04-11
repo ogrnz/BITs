@@ -5,34 +5,28 @@ import time
 
 def cleanN(el, parent):
     # Strip list of '\n' items
-    if isinstance(el, str):
-        parent.contents.remove(el)
+    if isinstance(el, str): parent.contents.remove(el)
     return
 
 def isCrit(row):
     # Know if current row is a criteria
     isCrit = False
-    if len(row.contents) == 1:
-        isCrit = True
+    if len(row.contents) == 1: isCrit = True
     return isCrit
 
 def getRowLvl(row):
     # Get current depth lvl of row
     lvl = None
-    if len(row.contents[0].attrs['class']) == 1:
-        lvl = 0
-    elif row.contents[0].attrs['class'][1] == 'col-sm-offset-1':
-        lvl = 1
-    elif row.contents[0].attrs['class'][1] == 'col-sm-offset-2':
-        lvl = 2
+    if len(row.contents[0].attrs['class']) == 1: lvl = 0
+    elif row.contents[0].attrs['class'][1] == 'col-sm-offset-1': lvl = 1
+    elif row.contents[0].attrs['class'][1] == 'col-sm-offset-2': lvl = 2
     return lvl
     
 t1 = time.time()
 
 urls = []
 with open('./helper/urls.txt', 'r') as f:
-    for line in f:
-        urls.append(line.strip())
+    for line in f: urls.append(line.strip())
 
 ## Dev 
 #urls = ['https://investmentpolicy.unctad.org/international-investment-agreements/treaties/bit/58/algeria---finland-bit-2005-']
@@ -64,7 +58,6 @@ for i, url in enumerate(urls, start = 1):
     headings = soup.find_all('div', class_='panel-heading')
 
     for heading in headings:
-        
         # Create criteria dict
         information['criteria'][heading.text.strip()] = {}
         BASE = information['criteria'][heading.text.strip()]
@@ -105,7 +98,7 @@ for i, url in enumerate(urls, start = 1):
                 elif currLvl == 1: 
                     BASE[lastCritLvl0][row.contents[0].text.strip()] = row.contents[1].text.strip()
                 elif currLvl == 2:
-                        BASE[lastCritLvl0][lastCritLvl1][row.contents[0].text.strip()] = row.contents[1].text.strip()
+                    BASE[lastCritLvl0][lastCritLvl1][row.contents[0].text.strip()] = row.contents[1].text.strip()
 
     # Append to treaties dict                                
     treaties.append(information)
