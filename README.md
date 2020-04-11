@@ -10,5 +10,3 @@ The mapped content of each treaty is then scraped using `scraper/script.py`. All
 If you wish to use the data in a `<html>` table, feel free to use the `helper/rows_generator.py` script to generate html code.
 
 The .json file is then formatted into `data/data.csv` and cleaned with `pandas` (see `helper/num.py`) into `data/cata_cleaned.csv`. Use it as you wish 🙂!
-
-> Don't forget to check the `issues` tab for possible bugs.
