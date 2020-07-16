@@ -33,17 +33,21 @@ def get_parties(parties):
     
     return party1, party2
 
+# Extract the different parties
 treaties['Party1'] = treaties['Parties'].map(lambda x: get_parties(x)[0])
 treaties['Party2'] = treaties['Parties'].map(lambda x: get_parties(x)[1])
-
-# Check if it seems ok
-print(treaties['Party1'].describe())
-print(treaties['Party2'].describe())
 
 # Rearrange column names
 cols = ['Party1', 'Party2'] + [col for col in treaties if col != 'Party1' and col != 'Party2']
 treaties = treaties[cols]
 
+# Rearrange dataframe index
+treaties.index = [x for x in range(1, len(treaties.values)+1)]
+treaties.index.name = 'id'
+
+# Check if it seems ok
+print(treaties['Party1'].describe())
+print(treaties['Party2'].describe())
 print(treaties.describe())
 
 # Export dataframe into new csv
