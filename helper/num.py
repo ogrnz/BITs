@@ -50,7 +50,9 @@ part1 = treaties['Party1'].unique().tolist()
 part2 = treaties['Party2'].unique().tolist()
 
 # Delete duplicated values
-all_c = set(part1 + part2)
+all_c = list(set(part1 + part2))
+# Sort list alphabetically
+all_c = sorted(all_c)
 print(all_c)
 print(len(all_c))
 
