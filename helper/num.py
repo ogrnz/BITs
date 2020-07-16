@@ -45,6 +45,15 @@ treaties = treaties[cols]
 treaties.index = [x for x in range(1, len(treaties.values)+1)]
 treaties.index.name = 'id'
 
+# Get unique values for parties (countries)
+part1 = treaties['Party1'].unique().tolist()
+part2 = treaties['Party2'].unique().tolist()
+
+# Delete duplicated values
+all_c = set(part1 + part2)
+print(all_c)
+print(len(all_c))
+
 # Check if it seems ok
 print(treaties['Party1'].describe())
 print(treaties['Party2'].describe())
