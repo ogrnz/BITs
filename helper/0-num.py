@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 
-treaties = pd.read_csv('./data/data.csv')
+treaties = pd.read_csv('../data/data.csv')
 
 # Let's delete some useless data
 del treaties['Treaty full text']
@@ -62,4 +62,4 @@ print(treaties['Party2'].describe())
 print(treaties.describe())
 
 # Export dataframe into new csv
-treaties.to_csv('./data/data_cleaned.csv')
+treaties.to_csv('../data/0-data_cleaned.csv')
