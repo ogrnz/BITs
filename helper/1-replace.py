@@ -25,15 +25,16 @@ special_cols = [
             "criteria/Investor-State Dispute Settlement (ISDS)/Forums/ISDS forum options/Other forums",
             "criteria/Investor-State Dispute Settlement (ISDS)/Other specific ISDS features/Provisional measures",
             "criteria/Investor-State Dispute Settlement (ISDS)/Other specific ISDS features/Consolidation of claims",
-            "criteria.Preamble.Reference.to.social.investment.aspects..e.g..human.rights..labour..health..CSR..poverty.reduction"
+            "criteria/Preamble/Reference to social investment aspects (e.g. human rights, labour, health, CSR, poverty reduction)"
             ]
 data_columns = list(df.columns)
 
 # Replace 'Yes' and 'No' values with corresponding -1, 0, 1, NA, ...
 for col in data_columns:
-    #Apply to all cols
+    # Apply to all cols
     df[col].replace(to_replace = ['Not applicable', 'Not mapped'], value = ['NA', 'NA'], inplace=True)
 
+    # Yes = -1
     if col in special_cols:
         df[col].replace(to_replace = ['Yes', 'No'], value = [-1, 0], inplace=True)
 
