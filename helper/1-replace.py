@@ -39,7 +39,7 @@ for col in data_columns:
     elif col == 'criteria/Scope and Definitions/Temporal scope of the treaty/Disputes covered':
         df[col].replace(to_replace = ['Carves out pre-existing disputes', 'Not stipulated'], value = [1, 0], inplace=True)
     elif col == 'criteria/Standards of Treatment/National treatment (NT)/Type of NT clause':
-        df[col].replace(to_replace = ['Post-establishment', 'Pre-establishment only', 'Pre- and post-establishment', 'None'], value = [1, 1, -1, 0], inplace=True)
+        df[col].replace(to_replace = ['Post-establishment', 'Pre-establishment only', 'Pre- and post-establishment', 'None', 'Inconclusive'], value = [1, 1, -1, 0, 0], inplace=True)
     elif col == 'criteria/Standards of Treatment/Most-favoured-nation (MFN) treatment/Type of MFN clause':
         df[col].replace(to_replace = ['Post-establishment', 'Pre-establishment only', 'Pre- and post-establishment', 'None'], value = [1, 1, -1, 0], inplace=True)
     elif col == 'criteria/Standards of Treatment/Fair and equitable treatment (FET)/Type of FET clause':
@@ -63,12 +63,12 @@ for col in data_columns:
     elif col == 'criteria/Investor-State Dispute Settlement (ISDS)/Scope and consent/Scope of claims: general approach (chapeau paragraph of ISDS clause)':
         df[col].replace(to_replace = ['Covers any dispute relating to investment', 'Lists specific bases of claim beyond treaty (e.g. contractual disputes)', 'Covers treaty claims only', 'Other'], value = [-1, -1, -1, 0], inplace=True)
     elif col == 'criteria/Investor-State Dispute Settlement (ISDS)/Forums/Relationship between forums':
-        df[col].replace(to_replace = ['No reference', 'Fork in the road', 'No U turn (waiver clause)', 'Preserving right to arbitration after domestic court proceedings', 'Local remedies first'], value = [0, 1, 1, -1, 1], inplace=True)
+        df[col].replace(to_replace = ['No reference', '"Fork in the road"', '"No U turn" (waiver clause)', 'Preserving right to arbitration after domestic court proceedings', 'Local remedies first'], value = [0, 1, 1, -1, 1], inplace=True)
     elif col == 'criteria/Treaty Duration, Amendment and Termination/Treaty duration/Years of initial treaty term':
         df[col].replace(to_replace = ['5 years', '10 years', '15 years', '20 years', 'Other'], value = [1, -1, -1, -1, 0], inplace=True)
     elif col == 'criteria/Treaty Duration, Amendment and Termination/Automatic renewal':
         df[col].replace(to_replace = ['None', 'Indefinite term', '2 years', '5 years', '10 years', '15 years', '20 years', 'Other'], value = [0, -1, 1, 1, -1, -1, -1, 0], inplace=True)
-    elif col == 'criteria/Treaty Duration, Amendment and Termination/Amendment and termination/""Survival""/""sunset"" clause length':
+    elif col == 'criteria/Treaty Duration, Amendment and Termination/Amendment and termination/"Survival"/"sunset" clause length':
         df[col].replace(to_replace = ['None', '5 years', '10 years', '15 years', '20 years', 'Other'], value = [0, 1, 1, -1, -1, 0], inplace=True)
     else:
         df[col].replace(to_replace = ['Yes', 'No'], value = [1, 0], inplace=True)
