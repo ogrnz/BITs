@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from pandas_datareader import wb
 import pycountry
 
@@ -83,11 +84,11 @@ for index, rowDF in df.iterrows():
         #print(WBdata.loc[party1, year][0], WBdata.loc[party1, year][1])
         #print(WBdata.loc[party2, year][0], WBdata.loc[party2, year][1])
 
-        df.loc[index, 'FDIOutflowsP1'] = WBdata.loc[party1, year][0]
-        df.loc[index, 'FDIInflowsP1'] = WBdata.loc[party1, year][1]
+        df.loc[index, 'FDIOutflowsP1'] = np.round(WBdata.loc[party1, year][0], decimals=4)
+        df.loc[index, 'FDIInflowsP1'] = np.round(WBdata.loc[party1, year][1], decimals=4)
 
-        df.loc[index, 'FDIOutflowsP2'] = WBdata.loc[party2, year][0]
-        df.loc[index, 'FDIInflowsP2'] = WBdata.loc[party2, year][1]
+        df.loc[index, 'FDIOutflowsP2'] = np.round(WBdata.loc[party2, year][0], decimals=4)
+        df.loc[index, 'FDIInflowsP2'] = np.round(WBdata.loc[party2, year][1], decimals=4)
 
 
 # Rearrange columns order
