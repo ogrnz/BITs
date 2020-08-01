@@ -32,8 +32,11 @@ FDI outflows:
 BM.KLT.DINV.WD.GD.ZS
 FDI inflows:
 BX.KLT.DINV.WD.GD.ZS
+GDP current $:
+NY.GDP.MKTP.CD
 '''
-WBdata = wb.download(indicator=['BM.KLT.DINV.WD.GD.ZS', 'BX.KLT.DINV.WD.GD.ZS'], country=parties, errors='raise', start=1900, end=2019)
+ind = ['BM.KLT.DINV.WD.GD.ZS', 'BX.KLT.DINV.WD.GD.ZS', 'NY.GDP.MKTP.CD']
+WBdata = wb.download(indicator=ind, country=parties, errors='raise', start=1900, end=2019)
 
 # Convert WBdata countries into ISO
 # https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
@@ -84,12 +87,16 @@ for index, rowDF in df.iterrows():
         #print(WBdata.loc[party1, year][0], WBdata.loc[party1, year][1])
         #print(WBdata.loc[party2, year][0], WBdata.loc[party2, year][1])
 
-        df.loc[index, 'FDIOutflowsP1'] = np.round(WBdata.loc[party1, year][0], decimals=4)
-        df.loc[index, 'FDIInflowsP1'] = np.round(WBdata.loc[party1, year][1], decimals=4)
+        df.loc[index, 'FDIOutflowsP1'] = WBdata.loc[party1, year][0]
+        df.loc[index, 'FDIInflowsP1'] = WBdata.loc[party1, year][1]
 
-        df.loc[index, 'FDIOutflowsP2'] = np.round(WBdata.loc[party2, year][0], decimals=4)
-        df.loc[index, 'FDIInflowsP2'] = np.round(WBdata.loc[party2, year][1], decimals=4)
+        df.loc[index, 'FDIOutflowsP2'] = WBdata.loc[party2, year][0]
+        df.loc[index, 'FDIInflowsP2'] = WBdata.loc[party2, year][1]
 
+        GDPP1 = WBdata.loc[party1, year][2]
+        GDPP2 = WBdata.loc[party2, year][2]
+        
+        df.loc[index, 'MaxGDPCurrent'] = max(GDPP1, GDPP2)
 
 # Rearrange columns order
 cols_to_order = [
