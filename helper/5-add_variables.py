@@ -22,6 +22,10 @@ not_in_wb = set(['ASEAN (Association of South-East Asian Nations)', 'BLEU (Belgi
 parties = list( (set(parties1) | set(parties2)) - not_in_wb)
 parties = sorted(parties)
 
+#Hotfix for WB
+parties[parties.index('NG')] = 'NE' #Niger
+parties[parties.index('NGA')] = 'NG' #Nigeria
+
 # EU not in hardcoded Worldbank country list
 # Hotfix
 wb.country_codes.append('EU')
@@ -37,6 +41,7 @@ NY.GDP.MKTP.CD
 '''
 ind = ['BM.KLT.DINV.WD.GD.ZS', 'BX.KLT.DINV.WD.GD.ZS', 'NY.GDP.MKTP.CD']
 WBdata = wb.download(indicator=ind, country=parties, errors='raise', start=1900, end=2019)
+#data = wb.download(indicator=['BM.KLT.DINV.WD.GD.ZS', 'BX.KLT.DINV.WD.GD.ZS'], country=['NE', 'NG'], errors='raise', start=1900, end=2019)
 
 # Convert WBdata countries into ISO
 # https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
@@ -68,7 +73,7 @@ converted_dict = {'Afghanistan': 'AFG', 'Angola': 'AGO', 'Albania': 'ALB', 'Unit
 'Gabon': 'GAB', 'United Kingdom': 'GBR', 'Georgia': 'GEO', 'Ghana': 'GHA', 'Guinea': 'GIN', 'Gambia, The': 'GMB', 'Guinea-Bissau': 'GNB', 'Equatorial Guinea': 'GNQ', 'Greece': 'GRC', 'Grenada': 'GRD', 'Guatemala': 'GTM', 'Guyana': 'GUY', 
 'Hong Kong SAR, China': 'HK','Honduras': 'HND', 'Croatia': 'HRV', 'Haiti': 'HTI', 'Hungary': 'HUN', 'Indonesia': 'IDN', 'India': 'IND', 'Ireland': 'IRL', 'Iran, Islamic Rep.': 'IRN', 'Iraq': 'IRQ', 'Iceland': 'ISL', 'Israel': 'ISR', 'Italy': 'ITA', 'Jamaica': 'JAM', 'Jordan': 'JOR', 'Japan': 'JPN', 'Kazakhstan': 'KAZ', 'Kenya': 'KEN', 
 'Kyrgyz Republic': 'KGZ', 'Cambodia': 'KHM', 'Korea, Rep.': 'KOR', 'Kuwait': 'KWT', 'Lao PDR': 'LAO', 'Lebanon': 'LBN', 'Liberia': 'LBR', 'Libya': 'LBY', 'St. Lucia': 'LCA', 'Sri Lanka': 'LKA', 'Lesotho': 'LSO', 'Lithuania': 'LTU', 'Latvia': 'LVA', 'Macao SAR, China': 'MO', 'Morocco': 'MAR', 'Moldova': 'MDA', 'Madagascar': 'MDG', 'Mexico': 'MEX', 'North Macedonia': 'MKD', 'Mali': 'MLI', 'Malta': 'MLT', 'Myanmar': 'MMR', 'Montenegro': 'MNE', 'Mongolia': 'MNG', 'Mozambique': 'MOZ', 
-'Mauritania': 'MRT', 'Mauritius': 'MUS', 'Malawi': 'MWI', 'Malaysia': 'MYS', 'Namibia': 'NAM', 'Nigeria': 'NGA', 'Nicaragua': 'NIC', 'Netherlands': 'NLD', 'Norway': 
+'Mauritania': 'MRT', 'Mauritius': 'MUS', 'Malawi': 'MWI', 'Malaysia': 'MYS', 'Namibia': 'NAM', 'Nigeria': 'NGA', 'Niger': 'NG', 'Nicaragua': 'NIC', 'Netherlands': 'NLD', 'Norway': 
 'NOR', 'Nepal': 'NPL', 'New Zealand': 'NZL', 'Oman': 'OMN', 'Pakistan': 'PAK', 'Panama': 'PAN', 'Peru': 'PER', 'Philippines': 'PHL', 'Papua New Guinea': 'PNG', 'Poland': 'POL', 'Portugal': 'PRT', 'Paraguay': 'PRY', 'West Bank and Gaza': 'West Bank and Gaza', 'Qatar': 'QAT', 'Romania': 'ROU', 'Russian Federation': 'RUS', 'Rwanda': 'RWA', 
 'Saudi Arabia': 'SAU', 'Sudan': 'SDN', 'Senegal': 'SEN', 'Singapore': 'SGP', 'Sierra Leone': 'SLE', 'El Salvador': 'SLV', 'San Marino': 'SMR', 'Somalia': 'SOM', 'Serbia': 'SRB', 'Sao Tome and Principe': 'STP', 'Suriname': 'SUR', 'Slovak Republic': 'SVK', 'Slovenia': 'SVN', 'Sweden': 'SWE', 'Eswatini': 'SWZ', 'Seychelles': 'SYC', 'Syrian Arab Republic': 'SYR', 'Chad': 'TCD', 'Togo': 'TGO', 'Thailand': 'THA', 'Tajikistan': 'TJK', 'Turkmenistan': 'TKM', 'Timor-Leste': 'TLS', 'Tonga': 
 'TON', 'Trinidad and Tobago': 'TTO', 'Tunisia': 'TUN', 'Turkey': 'TUR', 'Tanzania': 'TZA', 'Uganda': 'UGA', 'Ukraine': 'UKR', 'Uruguay': 'URY', 'United States': 'USA', 'Uzbekistan': 'UZB', 'St. Vincent and the Grenadines': 'VCT', 'Venezuela, RB': 'VEN', 'Vietnam': 'VNM', 'Vanuatu': 'VUT', 'Yemen, Rep.': 'YEM', 'South Africa': 'ZAF', 'Zambia': 'ZMB', 'Zimbabwe': 'ZWE'}

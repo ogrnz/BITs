@@ -8,14 +8,19 @@ specials = {
     'Hong Kong, China SAR': 'HK',
     'Congo, Democratic Republic of the': 'CD',
     'EU (European Union)': 'EU',
-    'Macao, China SAR': 'MO'
+    'Macao, China SAR': 'MO',
+    'Niger': 'NG',
+    'Kosovo': 'RKS'
 }
 # Transform Party1 and Party2 countries names into alpha-3 format for comfort
 # https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
 def toISO(country):
     country = str(country)
     try:
-        newName = pycountry.countries.search_fuzzy(country)[0].alpha_3
+        if country in specials:
+            newName = specials[country]
+        else:
+            newName = pycountry.countries.search_fuzzy(country)[0].alpha_3
     except LookupError:
         #Edge cases
         if country in specials:
