@@ -12,16 +12,7 @@ for index, row in df.iterrows():
 
     df.loc[index, 'DiffFlowsP1'] = np.round(outflowsP1 + inflowsP1, decimals=4)
     df.loc[index, 'DiffFlowsP2'] = np.round(outflowsP2 + inflowsP2, decimals=4)
-    '''
-    if outflowsP1 > inflowsP1:
-        df.loc[index, 'DiffFlowsP1'] = outflowsP1 - inflowsP1
-    elif inflowsP1 > outflowsP1:
-        df.loc[index, 'DiffFlowsP1'] = inflowsP1 - outflowsP1
-    elif outflowsP2 > outflowsP2:
-        df.loc[index, 'DiffFlowsP2'] = outflowsP2 - inflowsP2
-    elif inflowsP2 > outflowsP2:
-        df.loc[index, 'DiffFlowsP2'] = inflowsP2 - inflowsP2
-    '''
+
     # Difference of total flows
     diff_p1 = df.loc[index, 'DiffFlowsP1']
     diff_p2 = df.loc[index, 'DiffFlowsP2']
