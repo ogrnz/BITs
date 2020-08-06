@@ -1,5 +1,6 @@
 # International Investment Agreements scraper [Work in progress]
 *Author: Laura Mauricio*
+
 *Collaborator: Potrac*
 
 *This repository is the coding-part of an academic project, which link will be published here once it's finished.*
