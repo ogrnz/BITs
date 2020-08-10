@@ -28,6 +28,7 @@ As of now, the last dataset is `data/8-polity_vars_added.csv`. Just take the fil
 * If you wish to use the data in a `<html>` table, feel free to use the `helper/rows_generator.py` script to generate html code. 
 * If you want to reproduce the steps, install the correct python packages with Pip:
 `pip install -r requirements.txt`
+* Script 3 `3-to_iso.py` takes a long time to run. It's normal.
 * We are in no way CS students or something similar, the code is not elegant, but hey, it works.
 
 Use it as you wish 🙂!
