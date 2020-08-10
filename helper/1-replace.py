@@ -18,6 +18,7 @@ special_cols = [
             "criteria/Other Clauses/Transparency/Directed at States (obligation to publish laws and regulations)",
             "criteria/Other Clauses/Non-derogation clause (in case of IIA’s conflict with other norms, more favourable rules apply to investors)",
             "criteria/Other Clauses/Investment promotion/Reference to specific promotion activities in text of agreement (not preamble)",
+            "criteria/State-State Dispute Settlement (SSDS)/SSDS included",
             "criteria/Investor-State Dispute Settlement (ISDS)/ISDS included",
             "criteria/Investor-State Dispute Settlement (ISDS)/Forums/ISDS forum options/Domestic courts of the host State",
             "criteria/Investor-State Dispute Settlement (ISDS)/Forums/ISDS forum options/ICSID",
@@ -44,11 +45,11 @@ for col in data_columns:
     elif col == 'criteria/Scope and Definitions/Temporal scope of the treaty/Disputes covered':
         df[col].replace(to_replace = ['Carves out pre-existing disputes', 'Not stipulated'], value = [1, 0], inplace=True)
     elif col == 'criteria/Standards of Treatment/National treatment (NT)/Type of NT clause':
-        df[col].replace(to_replace = ['Post-establishment', 'Pre-establishment only', 'Pre- and post-establishment', 'None'], value = [1, 1, -1, 0], inplace=True)
+        df[col].replace(to_replace = ['Post-establishment', 'Pre-establishment only', 'Pre- and post-establishment', 'None'], value = [-1, 1, -1, 0], inplace=True)
     elif col == 'criteria/Standards of Treatment/Most-favoured-nation (MFN) treatment/Type of MFN clause':
         df[col].replace(to_replace = ['Post-establishment', 'Pre-establishment only', 'Pre- and post-establishment', 'None'], value = [1, 1, -1, 0], inplace=True)
     elif col == 'criteria/Standards of Treatment/Fair and equitable treatment (FET)/Type of FET clause':
-        df[col].replace(to_replace = ['FET unqualified', 'FET qualified', 'None'], value = [1, -1, 0], inplace=True)
+        df[col].replace(to_replace = ['FET unqualified', 'FET qualified', 'None'], value = [-1, -1, 0], inplace=True)
     elif col == 'criteria/Standards of Treatment/Fair and equitable treatment (FET)/FET qualified/By reference to international law':
         df[col].replace(to_replace = ['International law / principles of international law', 'Customary international law (CIL)', 'None', 'CIL/minimum standard of treatment'], value = [-1, -1, 0, -1], inplace=True)
     elif col == 'criteria/Standards of Treatment/Full protection and security':
