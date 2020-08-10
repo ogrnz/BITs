@@ -4,24 +4,15 @@ import numpy as np
 df = pd.read_csv('../data/5-added_variables.csv')
 
 for index, row in df.iterrows():
-    #Difference of flows per Party = abs(out-in)
+    #Difference of flows per Party = out + in
     outflowsP1 = df.loc[index, 'FDIOutflowsP1']
     inflowsP1 = df.loc[index, 'FDIInflowsP1']
     outflowsP2 = df.loc[index, 'FDIOutflowsP2']
     inflowsP2 = df.loc[index, 'FDIInflowsP2']
 
-    df.loc[index, 'DiffFlowsP1'] = np.round(np.absolute(outflowsP1 - inflowsP1), decimals=4)
-    df.loc[index, 'DiffFlowsP2'] = np.round(np.absolute(outflowsP2 - inflowsP2), decimals=4)
-    '''
-    if outflowsP1 > inflowsP1:
-        df.loc[index, 'DiffFlowsP1'] = outflowsP1 - inflowsP1
-    elif inflowsP1 > outflowsP1:
-        df.loc[index, 'DiffFlowsP1'] = inflowsP1 - outflowsP1
-    elif outflowsP2 > outflowsP2:
-        df.loc[index, 'DiffFlowsP2'] = outflowsP2 - inflowsP2
-    elif inflowsP2 > outflowsP2:
-        df.loc[index, 'DiffFlowsP2'] = inflowsP2 - inflowsP2
-    '''
+    df.loc[index, 'DiffFlowsP1'] = np.round(outflowsP1 + inflowsP1, decimals=4)
+    df.loc[index, 'DiffFlowsP2'] = np.round(outflowsP2 + inflowsP2, decimals=4)
+
     # Difference of total flows
     diff_p1 = df.loc[index, 'DiffFlowsP1']
     diff_p2 = df.loc[index, 'DiffFlowsP2']
