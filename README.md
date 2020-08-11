@@ -24,6 +24,8 @@ Each script is performing one operation (or one kind of operation). The scripts 
 
 As of now, the last dataset is `data/8-polity_vars_added.csv`. Just take the file with the highest number.
 
+The `final_script.r` is the script we used to generate the graphs and the models.
+
 ### Misc
 * If you wish to use the data in a `<html>` table, feel free to use the `helper/rows_generator.py` script to generate html code. 
 * If you want to reproduce the steps, install the correct python packages with Pip:
