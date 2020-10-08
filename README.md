@@ -1,9 +1,7 @@
-# International Investment Agreements scraper [Work in progress]
+# International Investment Agreements scraper
 *Author: Laura Mauricio*
 
 *Collaborator: Potrac*
-
-*This repository is the coding-part of an academic project, which link will be published here once it's finished.*
 
 This repository has two goals:
 * Scraping the data off the UNCTAD Investement policy hub
@@ -31,6 +29,5 @@ The `final_script.r` is the script we used to generate the graphs and the models
 * If you want to reproduce the steps, install the correct python packages with Pip:
 `pip install -r requirements.txt`
 * Script 3 `3-to_iso.py` takes a long time to run. It's normal.
-* We are in no way CS students or something similar, the code is not elegant, but hey, it works.
 
 Use it as you wish 🙂!
