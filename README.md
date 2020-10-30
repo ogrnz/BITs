@@ -1,7 +1,7 @@
 # International Investment Agreements scraper
 *Author: Laura Mauricio*
 
-*Collaborator: Potrac*
+*Collaborator: Olivier Grognuz*
 
 This repository has two goals:
 * Scraping the data off the UNCTAD Investement policy hub
